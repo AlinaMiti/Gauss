@@ -2,19 +2,21 @@
 #include <random>
 
 
-void Matrix_random(double** matrix, int N, double* b){
+void Matrix_random(float** matrix, int N, float* b){
 
     for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
-			matrix[i][j] = rand() % 100;
+			matrix[i][j] = 100000 + rand() % 1000000;
 		}
 	}
 	for (int j = 0; j < N; j++) {
-		b[j] = rand() % 100;
+		b[j] = 100000 + rand() % 1000000;
 	}
+    
+
 }
 
-void Matrix_Hand(double** Matrix, int N, double* b){
+void Matrix_Hand(float** Matrix, int N, float* b){
     std::cout << "Enter " << N*N << " matrix elements:" << std::endl;
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
@@ -27,7 +29,7 @@ void Matrix_Hand(double** Matrix, int N, double* b){
     }
 }
 
-double PrintSystem(double** matrix, int N, double* b){
+float PrintSystem(float** matrix, int N, float* b){
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
             std::cout << matrix[i][j] << " ";
@@ -37,7 +39,7 @@ double PrintSystem(double** matrix, int N, double* b){
     std::cout << std::endl;
 }
 
-double PrintMatrix(double** matrix, int N){
+float PrintMatrix(float** matrix, int N){
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
             std::cout << matrix[i][j] << " ";
@@ -46,14 +48,15 @@ double PrintMatrix(double** matrix, int N){
     }
 }
 
-double PrintVector(int N, double* b){
+float PrintVector(int N, float* b){
     for (int i = 0; i < N; i++){
         std::cout << b[i] << " ";
     }
+    std::cout << std::endl;
 }
 
-void GaussPH(double** A, int N, double* b){
-    double R;
+void GaussPH(float** A, int N, float* b){
+    float R;
     for (int i = 0; i < N; i++){
         R = A[i][i];
         if (R == 0){
@@ -76,8 +79,8 @@ void GaussPH(double** A, int N, double* b){
     }
 }
 
-void GaussOH(double** A, double* b, int N, double* x){
-    for(int i = N-1; i > 0; i--){
+void GaussOH(float** A, float* b, int N, float* x){
+    for(int i = N-1; i >= 0; i--){
         x[i] = b[i];
         if(i != N-1){
         for(int j = i+1; j < N; j++){
@@ -87,16 +90,16 @@ void GaussOH(double** A, double* b, int N, double* x){
 }
 }
 
-bool Check_Matrix(double** A, int N){
+bool Check_Matrix(float** A, int N){
     if(N = 3){
-        double a = (A[0][0]*A[1][1]*A[2][2])+(A[2][0]*A[0][1]*A[1][2])+(A[1][0]*A[2][1]*A[0][2])-(A[2][0]*A[1][1]*A[0][2])-(A[1][0]*A[0][1]*A[2][2])-(A[0][0]*A[1][2]*A[2][1]);
+        float a = (A[0][0]*A[1][1]*A[2][2])+(A[2][0]*A[0][1]*A[1][2])+(A[1][0]*A[2][1]*A[0][2])-(A[2][0]*A[1][1]*A[0][2])-(A[1][0]*A[0][1]*A[2][2])-(A[0][0]*A[1][2]*A[2][1]);
         if(a != 0)
         return true;
         if(a == 0)
         return false;
     }
     if(N=2){
-        double a = A[0][0]*A[1][1] - A[0][1]*A[1][0];
+        float a = A[0][0]*A[1][1] - A[0][1]*A[1][0];
         if(a != 0)
         return true;
         if(a == 0)
@@ -104,8 +107,8 @@ bool Check_Matrix(double** A, int N){
     }
 }
 
-double Residual_vector(double* b, double** A, double* x, int N){
-    double U = 0.0;
+float Residual_vector(float* b, float** A, float* x, int N){
+    float U = 0.0;
     
     for(int i = 0; i < N; i++){
         for(int j = 0; j<N; j++){
@@ -115,6 +118,7 @@ double Residual_vector(double* b, double** A, double* x, int N){
         std::cout << U << " ";
         U = 0.0;
     }
+    std::cout << std::endl;
 }
 
 int main(){
@@ -122,17 +126,18 @@ int main(){
     std::cout << "Set the size of the matrix:" << std::endl;
     std::cin >> N;
 
+    srand(time(NULL));
     if (N > 1 && N < 4){
-    double** matrix = new double*[N];
+    float** matrix = new float*[N];
         for(int i = 0; i < N; i++){
-            matrix[i] = new double[N];
+            matrix[i] = new float[N];
         }
 
-    double* x = new double[N];
+    float* x = new float[N];
 	for (int i = 0; i < N; i++)
 		x[i] = 1;
 
-    double* b = new double[N];
+    float* b = new float[N];
 
     std::cout << "Enter 1 to fill in the matrix randomly" << std::endl;
     std::cout << "Enter 2 to fill in the matrix manually" << std::endl;
@@ -150,16 +155,16 @@ int main(){
         default: std::cout << "1 or 2" << std::endl;
     }
     
-    double** matrix_1 = new double*[N];
+    float** matrix_1 = new float*[N];
         for(int i = 0; i < N; i++){
-            matrix_1[i] = new double[N];
+            matrix_1[i] = new float[N];
         }
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
             matrix_1[i][j] = matrix[i][j];
         }
     }
-    double* b_1 = new double[N];
+    float* b_1 = new float[N];
     for(int i = 0; i < N; i++){
         b_1[i] = b[i];
     }
@@ -174,10 +179,21 @@ int main(){
         Residual_vector(b_1, matrix_1, x, N);
     }
     else{
-        std::cout << "Error" << std::endl;
+        std::cout << "The matrix has many solutions" << std::endl;
+        GaussPH(matrix, N, b);
+        PrintSystem(matrix, N, b);
     }    
+
+    for (int i = 0; i < N; i++){
+        delete [] matrix[i];
+        delete [] matrix_1[i];
+    }
+    delete [] matrix;
+    delete [] matrix_1;
+    delete [] b;
+    delete [] x;
     }
     if (N<2 || N>3)
-        std::cout << "Error" << std::endl;
+        std::cout << "Error3" << std::endl;
     return 0;
 }

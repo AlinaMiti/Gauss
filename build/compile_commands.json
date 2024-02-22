@@ -1,8 +1,7 @@
 [
 {
-  "directory": "C:/Gauss/build",
-  "command": "C:\\MinGW\\bin\\g++.exe    -std=c++17 -g -o CMakeFiles\\main.dir\\main.cpp.obj -c C:\\Gauss\\main.cpp",
-  "file": "C:/Gauss/main.cpp",
-  "output": "CMakeFiles/main.dir/main.cpp.obj"
+  "directory": "/home/s23380424@unn.global/dz/Gauss/build",
+  "command": "/usr/bin/g++-12    -std=c++17 -g -o CMakeFiles/main.dir/main.cpp.o -c /home/s23380424@unn.global/dz/Gauss/main.cpp",
+  "file": "/home/s23380424@unn.global/dz/Gauss/main.cpp"
 }
 ]
