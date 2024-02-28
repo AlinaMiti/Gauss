@@ -1,4 +1,4 @@
-CMakeFiles/main.dir/main.cpp.obj: C:\Gauss\main.cpp \
+CMakeFiles/main.dir/main.cpp.obj: C:\Gauss\Gauss2\Gauss\main.cpp \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\iostream \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\c++config.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\os_defines.h \

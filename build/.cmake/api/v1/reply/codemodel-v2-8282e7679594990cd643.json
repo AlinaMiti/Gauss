@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.8"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "main::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-main-Debug-f572e04176cd14d5c96a.json",
+					"jsonFile" : "target-main-Debug-1fe717378fa34dd24ca6.json",
 					"name" : "main",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/s23380424@unn.global/dz/Gauss/build",
-		"source" : "/home/s23380424@unn.global/dz/Gauss"
+		"build" : "C:/Gauss/Gauss2/Gauss/build",
+		"source" : "C:/Gauss/Gauss2/Gauss"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 6
 	}
 }

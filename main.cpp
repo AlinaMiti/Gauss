@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <cstdlib>
 
 
 void Matrix_random(float** matrix, int N, float* b){
@@ -107,18 +108,15 @@ bool Check_Matrix(float** A, int N){
     }
 }
 
-float Residual_vector(float* b, float** A, float* x, int N){
-    float U = 0.0;
-    
+float Residual_vector(float* b, float** A, float* x, int N, float* U){
     for(int i = 0; i < N; i++){
         for(int j = 0; j<N; j++){
-            U += A[i][j]*x[j];
+            U[i] += A[i][j]*x[j];
         }
-        U = b[i] - U;
-        std::cout << U << " ";
-        U = 0.0;
+        U[i] = b[i] - U[i];
     }
-    std::cout << std::endl;
+    PrintVector(N, U);
+    delete [] U;
 }
 
 int main(){
@@ -126,7 +124,7 @@ int main(){
     std::cout << "Set the size of the matrix:" << std::endl;
     std::cin >> N;
 
-    srand(time(NULL));
+    //srand(time(NULL));
     if (N > 1 && N < 4){
     float** matrix = new float*[N];
         for(int i = 0; i < N; i++){
@@ -138,6 +136,8 @@ int main(){
 		x[i] = 1;
 
     float* b = new float[N];
+
+    float* U = new float[N];
 
     std::cout << "Enter 1 to fill in the matrix randomly" << std::endl;
     std::cout << "Enter 2 to fill in the matrix manually" << std::endl;
@@ -176,7 +176,7 @@ int main(){
         GaussOH(matrix, b, N, x);
         PrintVector(N, x);
         std::cout << "Deviation:" << " ";
-        Residual_vector(b_1, matrix_1, x, N);
+        Residual_vector(b_1, matrix_1, x, N, U);
     }
     else{
         std::cout << "The matrix has many solutions" << std::endl;
@@ -194,6 +194,6 @@ int main(){
     delete [] x;
     }
     if (N<2 || N>3)
-        std::cout << "Error3" << std::endl;
+        std::cout << "Error" << std::endl;
     return 0;
 }
